@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-//import { fraseObj } from '../interfase';
+import { fraseObj } from '../interfase';
 
 @Component({
   selector: 'app-escena',
@@ -8,22 +8,25 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EscenaComponent implements OnInit {
 
-  //@Input() frase: fraseObj[] = [];
-  @Input() frase:string[] =[];
+  @Input() frase: fraseObj[] = [];
+ // @Input() frase:string[] =[];
 
   constructor() {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.currentSentence = this.frase[0]
+  }
 
-  i: number = -1;
-  currentSentence = this.frase[this.i];
+  counter: number = 0;
+  currentSentence:object = this.frase[this.counter];
 
-  next(items: string[], index: number): void {
-    if (index === this.i) {
+
+  next(items: object[], index: number): void {
+
+    if (index === this.counter) {
       index += 1;
       this.currentSentence = items[index];
-      this.i++;
-
-      if (this.i === items.length - 1) {
+      this.counter++;
+      if (this.counter === items.length - 1) {
         let nextBtn: HTMLButtonElement = document.getElementById(
           'next'
         ) as HTMLButtonElement;
@@ -35,15 +38,18 @@ export class EscenaComponent implements OnInit {
         prevBtn.disabled = false;
       }
     }
+    let container:HTMLElement = document.querySelector('.container') as HTMLElement;
+    let bcgImg:string = '';
+    container.style.backgroundImage = bcgImg;
 
   }
 
-  prev(items: string[], index: number): void {
-    if (index === this.i) {
+  prev(items: object[], index: number): void {
+    if (index === this.counter) {
       index -= 1;
       this.currentSentence = items[index];
-      this.i--;
-      if (this.i - 1 < 0) {
+      this.counter--;
+      if (this.counter - 1 < 0) {
         let prevBtn: HTMLButtonElement = document.getElementById(
           'prev'
         ) as HTMLButtonElement;
@@ -56,4 +62,7 @@ export class EscenaComponent implements OnInit {
       }
     }
   }
+
+
+
 }

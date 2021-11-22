@@ -1,8 +1,12 @@
+
+<div class="container" [ngStyle] ="{'background-image': 'url(assets/img/' + (counter+1) + '.jpg)'}">
 <div class="button-group">
-<button id="prev" (click)= "prev(frase,i)" disabled>Anterior</button>
-<button id="next" (click)= "next(frase,i)">Seguent</button>
+<button id="prev" (click)= "prev(frase,counter)" disabled>Anterior</button>
+<button id="next" (click)= "next(frase,counter)">Seguent</button>
 </div>
 <ul>
-<li class="list-el" *ngFor="let el of frase let i=index" [ngClass]="{current: el === currentSentence, normal: el !== currentSentence}" >{{el}}</li>
+<li class="list-el" *ngFor="let el of frase let i=index" [ngClass]="{current: el === currentSentence, normal: el !== currentSentence}" >{{el.txt}}</li>
 
 </ul>
+</div>
+<!-- style="background-image: url('{{el.img}}')" -->
