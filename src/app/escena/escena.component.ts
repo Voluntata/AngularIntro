@@ -9,41 +9,40 @@ import { fraseObj } from '../interfase';
 export class EscenaComponent implements OnInit {
 
   @Input() frase: fraseObj[] = [];
- // @Input() frase:string[] =[];
+  // @Input() frase:string[] =[];
 
-  constructor() {}
+  constructor() { }
   ngOnInit(): void {
-    this.currentSentence = this.frase[0]
+    this.currentSentence = this.frase[0] //iniciar la pagina con primer elemento activo
   }
 
-  counter: number = 0;
-  currentSentence:object = this.frase[this.counter];
+  counter: number = 0; //iniciar el contador
+  currentSentence: object = this.frase[this.counter]; // declarar el elemeto activo
 
 
   next(items: object[], index: number): void {
-
+// si elemento es activo pasar a proximo elemento
     if (index === this.counter) {
       index += 1;
       this.currentSentence = items[index];
       this.counter++;
+      // desactivar el boton next al llegar al final del array
       if (this.counter === items.length - 1) {
         let nextBtn: HTMLButtonElement = document.getElementById(
           'next'
         ) as HTMLButtonElement;
         nextBtn.disabled = true;
       } else {
+        // mantener el boton prev activado
         let prevBtn: HTMLButtonElement = document.getElementById(
           'prev'
         ) as HTMLButtonElement;
         prevBtn.disabled = false;
       }
     }
-    let container:HTMLElement = document.querySelector('.container') as HTMLElement;
-    let bcgImg:string = '';
-    container.style.backgroundImage = bcgImg;
 
   }
-
+//logica repite el boton next, en sentido contrario
   prev(items: object[], index: number): void {
     if (index === this.counter) {
       index -= 1;

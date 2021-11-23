@@ -35,11 +35,12 @@ export class HomeComponent implements OnInit {
       img: "assets/img/4.jpg"
     },
   ];
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
-
+  ngOnInit(): void { }
+  //en el inicio elemento .escena no aparece
   isOpen: boolean = false;
+  // a clicar al boton aparece .escena y desaparece el .home
   open() {
     this.isOpen = true;
     let home: HTMLElement = document.querySelector('.home') as HTMLElement;
